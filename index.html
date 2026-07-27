@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORTFOLIO SNDSG. — Reels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08070c;
+    --bg-soft:#0f0d16;
+    --card:#141018;
+    --card-border:#241c30;
+    --violet:#a855f7;
+    --violet-2:#7c3aed;
+    --pink:#ec4899;
+    --text:#f3f0f7;
+    --muted:#8f88a3;
+    --muted-2:#6b6480;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    top:-20%;
+    left:50%;
+    transform:translateX(-50%);
+    width:1200px;
+    height:900px;
+    background:radial-gradient(circle, rgba(168,85,247,0.16) 0%, rgba(124,58,237,0.06) 40%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 32px;}
+
+  /* Header */
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:28px 0;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.5px;}
+  .logo-dot{
+    width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(135deg,var(--violet),var(--violet-2));
+    box-shadow:0 0 18px rgba(168,85,247,0.55);
+    flex-shrink:0;
+  }
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;margin-left:36px;transition:color .2s;}
+  nav a:hover{color:var(--text);}
+  .nav-right{display:flex;align-items:center;}
+  .contact-pill{
+    margin-left:36px;
+    padding:9px 20px;
+    border-radius:100px;
+    background:linear-gradient(135deg,var(--violet),var(--violet-2));
+    color:#fff;font-size:13px;font-weight:600;text-decoration:none;
+    box-shadow:0 4px 20px rgba(124,58,237,0.35);
+    transition:transform .2s, box-shadow .2s;
+    white-space:nowrap;
+  }
+  .contact-pill:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(124,58,237,0.5);}
+
+  /* Hero */
+  .hero{text-align:center;padding:90px 0 70px;}
+  .eyebrow{
+    font-size:13px;letter-spacing:2px;color:var(--muted-2);
+    text-transform:uppercase;margin-bottom:22px;font-weight:600;
+  }
+  h1.title{
+    font-family:'Unbounded',sans-serif;
+    font-weight:900;
+    font-size:clamp(40px,7vw,84px);
+    line-height:1.02;
+    letter-spacing:-1px;
+    background:linear-gradient(135deg,#fff 20%, var(--violet) 65%, var(--pink) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .subtitle{
+    margin-top:22px;
+    color:var(--muted);
+    font-size:15px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .subtitle span{color:var(--violet);}
+  .status-pill{
+    margin:30px auto 0;
+    display:inline-flex;align-items:center;gap:9px;
+    padding:10px 22px;
+    border:1px solid var(--card-border);
+    border-radius:100px;
+    background:rgba(168,85,247,0.06);
+    font-size:13px;color:var(--muted);
+    font-weight:500;
+  }
+  .status-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:#34d399;
+    box-shadow:0 0 8px #34d399;
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  /* Section label */
+  .section-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin:0 0 34px;
+    flex-wrap:wrap;gap:10px;
+  }
+  .section-head h2{
+    font-family:'Unbounded',sans-serif;
+    font-size:28px;font-weight:700;
+  }
+  .section-head p{color:var(--muted);font-size:14px;}
+
+  /* Reels grid */
+  .reels-section{padding:40px 0 60px;}
+  .reels-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:28px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .reel-card{
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    aspect-ratio:9/16;
+    cursor:pointer;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s;
+  }
+  .reel-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(168,85,247,0.5);
+  }
+  .reel-card video{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .reel-tag{
+    position:absolute;top:14px;left:14px;
+    padding:5px 12px;
+    font-size:11px;font-weight:700;
+    letter-spacing:1px;text-transform:uppercase;
+    background:rgba(8,7,12,0.55);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:100px;
+    color:var(--text);
+    z-index:3;
+  }
+  .reel-overlay{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg, rgba(8,7,12,0) 40%, rgba(8,7,12,0.75) 100%);
+    z-index:2;
+    pointer-events:none;
+    transition:opacity .3s;
+  }
+  .play-btn{
+    width:60px;height:60px;border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .3s, background .3s;
+  }
+  .reel-card:hover .play-btn{transform:scale(1.1);background:rgba(168,85,247,0.35);}
+  .play-btn svg{width:20px;height:20px;margin-left:3px;}
+  .reel-label{
+    position:absolute;bottom:16px;left:16px;right:16px;
+    z-index:3;
+    font-family:'Unbounded',sans-serif;
+    font-size:14px;font-weight:600;
+    color:#fff;
+  }
+
+  /* Contact */
+  .contact{
+    text-align:center;
+    padding:90px 0 40px;
+  }
+  .contact h2{
+    font-family:'Unbounded',sans-serif;
+    font-size:clamp(26px,4vw,38px);
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .contact p{color:var(--muted);font-size:15px;margin-bottom:30px;}
+  .big-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 34px;
+    border-radius:100px;
+    background:linear-gradient(135deg,var(--violet),var(--pink));
+    color:#fff;text-decoration:none;
+    font-weight:700;font-size:15px;
+    box-shadow:0 10px 40px rgba(168,85,247,0.35);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .big-cta:hover{transform:translateY(-3px);box-shadow:0 14px 50px rgba(168,85,247,0.5);}
+
+  footer{
+    text-align:center;
+    padding:36px 0 40px;
+    color:var(--muted-2);
+    font-size:13px;
+    border-top:1px solid var(--card-border);
+    margin-top:40px;
+  }
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;inset:0;
+    background:rgba(4,3,8,0.92);
+    backdrop-filter:blur(10px);
+    display:none;
+    align-items:center;justify-content:center;
+    z-index:50;
+    padding:30px;
+  }
+  .lightbox.active{display:flex;}
+  .lightbox video{
+    max-height:88vh;
+    max-width:92vw;
+    border-radius:18px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:24px;right:30px;
+    width:42px;height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  @media (max-width:600px){
+    nav{display:none;}
+    header{padding:20px 0;}
+    .hero{padding:60px 0 50px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="logo-dot"></span>SNDSG.</div>
+    <div class="nav-right">
+      <nav><a href="#reels">Рилсы</a></nav>
+      <a class="contact-pill" href="https://t.me/sndsgg" target="_blank" rel="noopener">Написать</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Motion Design · Reels Editing</div>
+    <h1 class="title">PORTFOLIO SNDSG.</h1>
+    <div class="subtitle">Motion Design <span>·</span> Reels <span>·</span> Video Content</div>
+    <div class="status-pill"><span class="status-dot"></span> Online · Свободен для заказов</div>
+  </section>
+
+  <section class="reels-section" id="reels">
+    <div class="section-head">
+      <h2>Рилсы</h2>
+      <p>Кликни, чтобы включить со звуком</p>
+    </div>
+    <div class="reels-grid">
+      <div class="reel-card" data-src="reel1.mp4">
+        <span class="reel-tag">Motion</span>
+        <video src="reel1.mp4" poster="poster1.jpg" muted loop playsinline preload="metadata"></video>
+        <div class="reel-overlay">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="reel-label">Reel 01</div>
+      </div>
+      <div class="reel-card" data-src="reel2.mp4">
+        <span class="reel-tag">Motion</span>
+        <video src="reel2.mp4" poster="poster2.jpg" muted loop playsinline preload="metadata"></video>
+        <div class="reel-overlay">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="reel-label">Reel 02</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Обсудить ваш проект</h2>
+    <p>Пишите в Telegram — отвечаю быстро</p>
+    <a class="big-cta" href="https://t.me/sndsgg" target="_blank" rel="noopener">
+      Написать в Telegram →
+    </a>
+  </section>
+
+  <footer>© 2026 SNDSG. Все права защищены.</footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">×</div>
+  <video id="lightboxVideo" controls playsinline></video>
+</div>
+
+<script>
+  // Autoplay muted preview on hover (desktop) 
+  document.querySelectorAll('.reel-card video').forEach(v=>{
+    const card = v.closest('.reel-card');
+    card.addEventListener('mouseenter', ()=>{ v.play().catch(()=>{}); });
+    card.addEventListener('mouseleave', ()=>{ v.pause(); v.currentTime=0; });
+  });
+
+  // Click -> open lightbox with sound
+  const lightbox = document.getElementById('lightbox');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  document.querySelectorAll('.reel-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const src = card.getAttribute('data-src');
+      lightboxVideo.src = src;
+      lightbox.classList.add('active');
+      lightboxVideo.play().catch(()=>{});
+    });
+  });
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
